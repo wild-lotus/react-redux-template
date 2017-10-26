@@ -8,7 +8,7 @@ export type Props = {
   letters:  Array<string>,
 };
 
-export default (props: Props) => {
+export default function DerivedData(props: Props) {
   const { letters } = props;
   console.log('Rendered DerivedData. This should only happen once.');
   return (
@@ -22,4 +22,4 @@ export default (props: Props) => {
       <p>Check the console to see how many times I get rendered.</p>
     </div>
   );
-};
+}

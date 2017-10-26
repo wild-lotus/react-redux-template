@@ -9,7 +9,7 @@ export type Props = {
   +updateCounter: number => void,
 };
 
-export default (props: Props) => {
+export default function Counter(props: Props) {
   const { current, updateCounter } = props;
   return (
     <div className={styles.Root}>
@@ -19,4 +19,4 @@ export default (props: Props) => {
       <button onClick={() => updateCounter(-1)}>-</button>
     </div>
   );
-};
+}

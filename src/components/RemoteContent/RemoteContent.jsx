@@ -12,7 +12,7 @@ export type Props = {
   +getRemoteContent: () => void,
 };
 
-export default (props: Props) => {
+export default function RemoteContent(props: Props) {
   const { contentF, getRemoteContent } = props;
   return (
     <div className={styles.Root}>
@@ -25,4 +25,4 @@ export default (props: Props) => {
       <button onClick={getRemoteContent}>Request new content</button>
     </div>
   );
-};
+}
