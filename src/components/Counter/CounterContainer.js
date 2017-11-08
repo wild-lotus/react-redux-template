@@ -5,7 +5,7 @@ import type { State, Dispatch } from '../../types';
 import type { Props } from './Counter';
 
 import { connect } from 'react-redux';
-import { updateCounter } from '../../actions';
+import { updateCounter } from '../../actions/actions';
 import Counter from './Counter';
 
 type OwnProps = {||};

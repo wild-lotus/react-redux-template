@@ -10,12 +10,18 @@ const contentFReducer: Reducer<Fetchable<string>, Action> = (
   action
 ) => {
   switch (action.type) {
-    case 'GET_REMOTE_CONTENT_REQUEST':
-      return f.fetching;
-    case 'GET_REMOTE_CONTENT_RESPONSE':
-      return f.success(action.content);
-    case 'GET_REMOTE_CONTENT_ERROR':
-      return f.error(action.error);
+    case 'GET_REMOTE_CONTENT':
+      switch (action.status) {
+        case 'inProgress':
+          return f.fetching;
+        case 'success':
+          return f.success(action.payload);
+        case 'error':
+          return f.error(action.error);
+        default:
+          (action: empty); // eslint-disable-line no-unused-expressions
+          return state;
+      }
     default:
       return state;
   }

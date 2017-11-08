@@ -50,28 +50,37 @@ export type State = {|
 
 type ReduxInitAction = { type: '@@INIT' };
 
+export type AsyncAction<Type, Payload, Context> =
+  | {
+      type: Type,
+      status: 'inProgress',
+      context: Context,
+    }
+  | {
+      type: Type,
+      status: 'success',
+      payload: Payload,
+      context: Context,
+    }
+  | {
+      type: Type,
+      status: 'error',
+      error: Error,
+      context: Context,
+    };
+
+export type AsyncActions<Type, Payload, Context> = {|
+  +inProgress: Context => AsyncAction<Type, Payload, Context>,
+  +success: (Payload, Context) => AsyncAction<Type, Payload, Context>,
+  +error: (Error, Context) => AsyncAction<Type, Payload, Context>,
+|};
+
 export type UpdateCounterAction = {
   type: 'UPDATE_COUNTER',
   update: number,
 };
 
-export type GetRemoteContentRequestAction = {
-  type: 'GET_REMOTE_CONTENT_REQUEST',
-};
-
-export type GetRemoteContentResponseAction = {
-  type: 'GET_REMOTE_CONTENT_RESPONSE',
-  content: string,
-};
-
-export type GetRemoteContentErrorAction = {
-  type: 'GET_REMOTE_CONTENT_ERROR',
-  error: Error,
-};
-
 export type Action =
   | ReduxInitAction
-  | UpdateCounterAction
-  | GetRemoteContentRequestAction
-  | GetRemoteContentResponseAction
-  | GetRemoteContentErrorAction;
+  | AsyncAction<'GET_REMOTE_CONTENT', string, void>
+  | UpdateCounterAction;
