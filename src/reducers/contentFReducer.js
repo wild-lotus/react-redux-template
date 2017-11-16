@@ -20,7 +20,7 @@ const contentFReducer: Reducer<Fetchable<string>, Action> = (
           return f.error(action.error);
         default:
           (action: empty); // eslint-disable-line no-unused-expressions
-          return state;
+          throw new Error('Unexpected fetchable state');
       }
     default:
       return state;

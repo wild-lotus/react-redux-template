@@ -1,12 +1,15 @@
 // @flow
 
+// eslint-disable-next-line
+import mapPrototypeTojson from 'map.prototype.tojson';
+
 import type { Store } from './types';
 
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
 import MainPage from './components/MainPage/MainPage';
 import './index.css';
@@ -16,7 +19,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store: Store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunkMiddleware))
 );
 
 const rootElement = document.getElementById('root');

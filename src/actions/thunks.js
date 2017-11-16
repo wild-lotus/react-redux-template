@@ -14,12 +14,14 @@ const basicThunk = <Payload, Context>(
   context: Context
 ): ThunkAction => async (dispatch, getState) => {
   dispatch(asyncActions.inProgress(context));
+  let result;
   try {
-    const result = await promise();
-    dispatch(asyncActions.success(result, context));
+    result = await promise();
   } catch (error) {
     dispatch(asyncActions.error(error, context));
+    return;
   }
+  dispatch(asyncActions.success(result, context));
 };
 
 export const getRemoteContentThunk = () =>
