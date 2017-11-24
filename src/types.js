@@ -8,11 +8,11 @@ import type { Store as ReduxStore, Dispatch as ReduxDispatch } from 'redux';
 
 export type InitFetchable = {| +progress: 'init' |};
 export type FetchingFetchable = {| +progress: 'fetching' |};
-export type SuccessFetchable<T> = {|
+export type SuccessFetchable<T> = {
   +progress: 'success',
   +payload: T,
   +invalidated?: boolean,
-|};
+};
 export type ErrorFetchable = {| +progress: 'error', +error: Error |};
 export type Fetchable<T> =
   | InitFetchable

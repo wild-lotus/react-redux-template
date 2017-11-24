@@ -35,25 +35,25 @@ export const safeSuccess = <T>(origin: ?Fetchable<T>): SuccessFetchable<T> => {
   throw new Error('Invalid cast from Fetchable to SuccessFetchable');
 };
 
-export const payload = <T>(origin: ?Fetchable<T>): T =>
+export const safePayload = <T>(origin: ?Fetchable<T>): T =>
   safeSuccess(origin).payload;
 
-export const invalidate = <T>(origin: Fetchable<T>): SuccessFetchable<T> => ({
-  progress: SUCCESS_PROGRESS,
-  payload: safeSuccess(origin).payload,
+export const invalidate = <T>(
+  origin: SuccessFetchable<T>
+): SuccessFetchable<T> => ({
+  ...origin,
   invalidated: true,
 });
 
 export const update = <T>(
-  origin: Fetchable<T>,
+  origin: SuccessFetchable<T>,
   updatePayload: T => T,
   invalidate?: boolean
 ): SuccessFetchable<T> => {
-  const success = safeSuccess(origin);
   return {
-    progress: SUCCESS_PROGRESS,
-    payload: updatePayload(success.payload),
-    invalidated: invalidate != null ? invalidate : success.invalidated,
+    ...origin,
+    payload: updatePayload(origin.payload),
+    invalidated: invalidate != null ? invalidate : origin.invalidated,
   };
 };
 
@@ -80,7 +80,7 @@ export const render = <T>(
         <p style={{ color: 'red' }}>{`Error fetching ${name}`}</p>
       );
     default:
-      // eslint-disable-next-line
-      (origin: empty);
+      (origin: empty); // eslint-disable-line no-unused-expressions
+      throw new Error('Unexpected fetchable progress');
   }
 };

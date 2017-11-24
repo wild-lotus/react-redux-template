@@ -4,6 +4,7 @@ import type { Reducer } from 'redux';
 import type { Fetchable, Action } from '../types';
 
 import * as f from '../misc/fetchable';
+import { asyncActionsReducer } from '../misc/asyncActions';
 
 const contentFReducer: Reducer<Fetchable<string>, Action> = (
   state = f.init,
@@ -11,17 +12,7 @@ const contentFReducer: Reducer<Fetchable<string>, Action> = (
 ) => {
   switch (action.type) {
     case 'GET_REMOTE_CONTENT':
-      switch (action.status) {
-        case 'inProgress':
-          return f.fetching;
-        case 'success':
-          return f.success(action.payload);
-        case 'error':
-          return f.error(action.error);
-        default:
-          (action: empty); // eslint-disable-line no-unused-expressions
-          throw new Error('Unexpected fetchable state');
-      }
+      return asyncActionsReducer(action);
     default:
       return state;
   }
