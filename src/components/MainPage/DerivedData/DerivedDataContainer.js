@@ -1,11 +1,11 @@
 // @flow
 
 import type { MapStateToProps, Connector } from 'react-redux';
-import type { State } from '../../types';
+import type { State } from 'types';
 import type { Props } from './DerivedData';
 
 import { connect } from 'react-redux';
-import getLetters from '../../selectors/getLetters';
+import getLetters from 'selectors/getLetters';
 import DerivedData from './DerivedData';
 
 export type OwnProps = { position: number };

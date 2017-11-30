@@ -1,11 +1,11 @@
 // @flow
 
 import type { Connector } from 'react-redux';
-import type { State, Dispatch } from '../../types';
+import type { State, Dispatch } from 'types';
 import type { Props } from './RemoteContent';
 
 import { connect } from 'react-redux';
-import { getRemoteContentThunk } from '../../actions/thunks';
+import { getRemoteContentThunk } from 'actions/thunks';
 import RemoteContent from './RemoteContent';
 
 type OwnProps = {||};

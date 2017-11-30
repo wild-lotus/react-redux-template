@@ -1,10 +1,10 @@
 // @flow
 
 import type { Reducer } from 'redux';
-import type { Fetchable, Action } from '../types';
+import type { Fetchable, Action } from 'types';
 
-import * as f from '../misc/fetchable';
-import { asyncActionsReducer } from '../misc/asyncActions';
+import * as f from 'misc/fetchable';
+import { asyncActionsReducer } from 'misc/asyncActions';
 
 const contentFReducer: Reducer<Fetchable<string>, Action> = (
   state = f.init,

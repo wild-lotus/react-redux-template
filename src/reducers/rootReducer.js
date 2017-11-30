@@ -1,7 +1,7 @@
 // @flow
 
 import type { Reducer } from 'redux';
-import type { State, Action } from '../types';
+import type { State, Action } from 'types';
 
 import { combineReducers } from 'redux';
 import counter from './counterReducer';

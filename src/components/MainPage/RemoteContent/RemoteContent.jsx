@@ -1,9 +1,9 @@
 // @flow
 
-import type { Fetchable } from '../../types.js';
+import type { Fetchable } from 'types.js';
 
 import * as React from 'react';
-import * as f from '../../misc/fetchable';
+import * as f from 'misc/fetchable';
 import styles from './RemoteContent.css';
 
 // prettier-ignore

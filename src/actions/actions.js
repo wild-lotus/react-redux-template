@@ -1,8 +1,8 @@
 // @flow
 
-import type { UpdateCounterAction, AsyncActions } from '../types';
+import type { UpdateCounterAction, AsyncActions } from 'types';
 
-import { asyncActions } from '../misc/asyncActions';
+import { asyncActions } from 'misc/asyncActions';
 
 export const getRemoteContent: AsyncActions<
   'GET_REMOTE_CONTENT',

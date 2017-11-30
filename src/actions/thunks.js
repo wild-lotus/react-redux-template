@@ -6,7 +6,7 @@ import type {
 } from '../types';
 
 import { getRemoteContent } from './actions';
-import { getContent } from '../data/contentRepo';
+import { getContent } from 'data/contentRepo';
 
 const basicThunk = <Payload, Context>(
   asyncActions: *, // FIXME: F**k it! I can't make it work :@ (AsyncActions<Type, Payload, Context>)

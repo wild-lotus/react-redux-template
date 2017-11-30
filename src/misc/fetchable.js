@@ -1,6 +1,6 @@
 //@flow
 
-import type { SuccessFetchable, ErrorFetchable, Fetchable } from '../types';
+import type { SuccessFetchable, ErrorFetchable, Fetchable } from 'types';
 
 import * as React from 'react';
 

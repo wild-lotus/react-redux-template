@@ -1,7 +1,7 @@
 // @flow
 
 import fetch from 'isomorphic-fetch';
-import { safeEnv } from '../misc/safe';
+import { safeEnv } from 'misc/safe';
 
 const baseUrl = safeEnv('REACT_APP_API_URL');
 

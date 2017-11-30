@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import CounterContainer from '../Counter/CounterContainer';
-import RemoteContentContainer from '../RemoteContent/RemoteContentContainer';
-import DerivedDataContainer from '../DerivedData/DerivedDataContainer';
-import logo from '../../images/logo.svg';
+import CounterContainer from './Counter/CounterContainer';
+import RemoteContentContainer from './RemoteContent/RemoteContentContainer';
+import DerivedDataContainer from './DerivedData/DerivedDataContainer';
+import logo from 'images/logo.svg';
 import styles from './MainPage.css';
 
 export default function MainPage() {

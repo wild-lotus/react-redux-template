@@ -1,7 +1,7 @@
 // @flow
 
-import type { State } from '../types';
-import type { OwnProps } from '../components/DerivedData/DerivedDataContainer';
+import type { State } from 'types';
+import type { OwnProps } from 'components/MainPage/DerivedData/DerivedDataContainer';
 
 import createCachedSelector from 're-reselect';
 
