@@ -15,7 +15,10 @@ import MainPage from './components/MainPage/MainPage';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers =
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+    serialize: true,
+  }) || compose;
 
 const store: Store = createStore(
   rootReducer,

@@ -105,7 +105,7 @@
   },
   "prettier": {
     "singleQuote": true,
-    "trailing-comma": "es5",
-    "jsx-bracket-same-line": true
+    "trailingComma": "es5",
+    "jsxBracketSameLine": true
   }
 }
