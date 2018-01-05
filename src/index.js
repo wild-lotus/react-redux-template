@@ -16,9 +16,11 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 const composeEnhancers =
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-    serialize: true,
-  }) || compose;
+  (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      serialize: true,
+    })) ||
+  compose;
 
 const store: Store = createStore(
   rootReducer,
