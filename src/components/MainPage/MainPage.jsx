@@ -15,40 +15,38 @@ export default function MainPage() {
         <header className={styles.Header}>
           <img src={logo} className={styles.Logo} alt="logo" />
           <h1 className={styles.Title}> Welcome to the Front-end</h1>
+          <nav>
+            <Link to="/" className={styles.Link}>
+              Home
+            </Link>
+            <Link to="/counter" className={styles.Link}>
+              Counter
+            </Link>
+            <Link to="/remote-content" className={styles.Link}>
+              Remote content
+            </Link>
+            <Link to="/derived-data" className={styles.Link}>
+              Derived Data
+            </Link>
+          </nav>
         </header>
-        <p className={styles.Intro}>
-          To get started, edit <code>
-            src/components/MainPage/MainPage.js
-          </code>{' '}
-          and save to reload.
-        </p>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/counter">Counter</Link>
-          </li>
-          <li>
-            <Link to="/remote-content">Remote content</Link>
-          </li>
-          <li>
-            <Link to="/derived-data">Derived Data</Link>
-          </li>
-        </ul>
-        <Switch>
-          <Route path="/counter" component={CounterContainer} />
-          <Route path="/remote-content" component={RemoteContentContainer} />
-          <Route
-            path="/derived-data"
-            render={() => <DerivedDataContainer position={3} />}
-          />
-          <Route render={() => 'Select an example'} />
-        </Switch>
-        {/* <CounterContainer />
-        <RemoteContentContainer />
-        <DerivedDataContainer position={3} /> */}
-
+        <main>
+          <Switch>
+            <Route path="/counter" component={CounterContainer} />
+            <Route path="/remote-content" component={RemoteContentContainer} />
+            <Route
+              path="/derived-data"
+              render={() => <DerivedDataContainer position={3} />}
+            />
+            <Route
+              path="/ops"
+              render={() => <iframe title="ops" src="http://localhost:3000" />}
+            />
+            <Route
+              render={() => <p className={styles.Intro}>Select a sample</p>}
+            />
+          </Switch>
+        </main>
         <footer className={styles.Footer}>
           {process.env.PACKAGE_VERSION} - {process.env.COMMIT_HASH}
         </footer>
