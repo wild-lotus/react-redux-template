@@ -4,7 +4,6 @@ import type { Fetchable } from 'types.js';
 
 import * as React from 'react';
 import * as f from 'misc/fetchable';
-import styles from './RemoteContent.css';
 
 // prettier-ignore
 export type Props = {
@@ -15,7 +14,7 @@ export type Props = {
 export default function RemoteContent(props: Props) {
   const { contentF, getRemoteContent } = props;
   return (
-    <div className={styles.Root}>
+    <div>
       <h2>Sample remote content</h2>
       {f.render(contentF, 'remote content', content => (
         <p>
