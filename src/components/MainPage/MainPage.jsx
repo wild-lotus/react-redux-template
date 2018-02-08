@@ -11,6 +11,7 @@ import logo from 'images/logo.svg';
 const StyledRoot = styled.div`
   background-color: ${props => props.theme.backgroundColor};
   min-height: 100vh;
+  overflow: hidden;
   text-align: center;
 `;
 
