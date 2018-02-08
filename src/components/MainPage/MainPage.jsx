@@ -82,9 +82,7 @@ export default function MainPage() {
             </Switch>
           </StyledSampleContainer>
         </main>
-        <StyledFooter>
-          {process.env.PACKAGE_VERSION} - {process.env.COMMIT_HASH}
-        </StyledFooter>
+        <StyledFooter>{process.env.REACT_APP_VERSION}</StyledFooter>
       </StyledRoot>
     </Router>
   );

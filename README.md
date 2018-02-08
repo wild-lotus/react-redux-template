@@ -4,7 +4,7 @@
 
 Based on a React + Redux architecture with this specificities:
 
-- Bootstrapped with an ejected [Create React App](https://github.com/facebookincubator/create-react-app) (CRA). See [CRA-README.md](./CRA-README.md) for more info.
+- Bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) (CRA) 1.5.1. See [CRA-README.md](./CRA-README.md) for more info.
 - Using [Redux](http://redux.js.org/) for state management.
   - Using [redux-thunk](https://github.com/gaearon/redux-thunk) for async actions.
   - Using [reselect](https://github.com/reactjs/reselect) and [re-reselect](https://github.com/toomuchdesign/re-reselect) in order to compute derived data.
