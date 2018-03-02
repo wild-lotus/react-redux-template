@@ -3,7 +3,7 @@
 import type {
   ThunkAction,
   // AsyncActions,
-} from '../types';
+} from 'types';
 
 import { getRemoteContent } from './actions';
 import { getContent } from 'data/contentRepo';

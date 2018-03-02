@@ -1,35 +1,50 @@
 //@flow
 
-import type { SuccessFetchable, ErrorFetchable, Fetchable } from 'types';
-
 import * as React from 'react';
 
-export const INIT_PROGRESS = 'init';
-export const FETCHING_PROGRESS = 'fetching';
-export const SUCCESS_PROGRESS = 'success';
-export const ERROR_PROGRESS = 'error';
+export const INIT: 'init' = 'init';
+export const FETCHING: 'fetching' = 'fetching';
+export const SUCCESS: 'success' = 'success';
+export const ERROR: 'error' = 'error';
 
-export const init = { progress: INIT_PROGRESS };
-export const fetching = { progress: FETCHING_PROGRESS };
+export type InitFetchable = {| +progress: typeof INIT |};
+export type FetchingFetchable = {| +progress: typeof FETCHING |};
+export type SuccessFetchable<T> = {
+  +progress: typeof SUCCESS,
+  +payload: T,
+  +invalidated?: boolean,
+};
+export type ErrorFetchable = {| +progress: typeof ERROR, +error: Error |};
+export type Fetchable<T> =
+  | InitFetchable
+  | FetchingFetchable
+  | SuccessFetchable<T>
+  | ErrorFetchable;
 
-export const isInit = <T>(f: Fetchable<T>) => f.progress === INIT_PROGRESS;
-export const isFetching = <T>(f: Fetchable<T>) =>
-  f.progress === FETCHING_PROGRESS;
-export const isSuccess = <T>(f: Fetchable<T>) =>
-  f.progress === SUCCESS_PROGRESS;
-export const isError = <T>(f: Fetchable<T>) => f.progress === ERROR_PROGRESS;
-
+export const init = { progress: INIT };
+export const fetching = { progress: FETCHING };
 export const success = <T>(payload: T): SuccessFetchable<T> => ({
-  progress: SUCCESS_PROGRESS,
+  progress: SUCCESS,
   payload,
 });
 export const error = (error: Error): ErrorFetchable => ({
-  progress: ERROR_PROGRESS,
+  progress: ERROR,
   error,
 });
 
+export const isInit = <T>(f: Fetchable<T>) => f.progress === INIT;
+export const isFetching = <T>(f: Fetchable<T>) => f.progress === FETCHING;
+export const isSuccess = <T>(f: Fetchable<T>) => f.progress === SUCCESS;
+export const isValidSuccess = <T>(f: Fetchable<T>) =>
+  f.progress === SUCCESS && !f.invalidated;
+export const isInvalidated = <T>(f: Fetchable<T>) =>
+  f.progress === SUCCESS && f.invalidated;
+export const isFetchingOrInvalidated = <T>(f: Fetchable<T>) =>
+  isFetching(f) || isInvalidated(f);
+export const isError = <T>(f: Fetchable<T>) => f.progress === ERROR;
+
 export const safeSuccess = <T>(origin: ?Fetchable<T>): SuccessFetchable<T> => {
-  if (origin != null && origin.progress === SUCCESS_PROGRESS) {
+  if (origin != null && origin.progress === SUCCESS) {
     return origin;
   }
   throw new Error('Invalid cast from Fetchable to SuccessFetchable');
@@ -66,18 +81,25 @@ export const render = <T>(
   renderError?: (error: Error) => React.Node
 ): React.Node => {
   switch (origin.progress) {
-    case INIT_PROGRESS:
-      return renderInit || <p>{`Waiting for ${name} fetch to start...`}</p>;
-    case FETCHING_PROGRESS:
-      return renderFetching || <p>{`Fetching ${name}...`}</p>;
-    case SUCCESS_PROGRESS:
-      return renderSuccess(origin.payload, origin.invalidated);
-    case ERROR_PROGRESS:
-      console.error(`Error fetching ${name}:`, origin.error);
-      return renderError ? (
-        renderError(origin.error)
+    case INIT:
+      return renderInit === undefined ? (
+        <p>{`Waiting for ${name} fetch to start...`}</p>
       ) : (
+        renderInit
+      );
+    case FETCHING:
+      return renderFetching === undefined ? (
+        <p>{`Fetching ${name}...`}</p>
+      ) : (
+        renderFetching
+      );
+    case SUCCESS:
+      return renderSuccess(origin.payload, origin.invalidated);
+    case ERROR:
+      return renderError === undefined ? (
         <p style={{ color: 'red' }}>{`Error fetching ${name}`}</p>
+      ) : (
+        renderError(origin.error)
       );
     default:
       (origin: empty); // eslint-disable-line no-unused-expressions

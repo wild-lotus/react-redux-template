@@ -1,6 +1,7 @@
 // @flow
 
-import type { Fetchable, AsyncAction, AsyncActions } from '../types';
+import type { AsyncAction, AsyncActions } from 'types';
+import type { Fetchable } from 'misc/fetchable';
 
 import * as f from './fetchable';
 

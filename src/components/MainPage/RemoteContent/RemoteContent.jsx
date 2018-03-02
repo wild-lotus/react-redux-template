@@ -1,6 +1,6 @@
 // @flow
 
-import type { Fetchable } from 'types.js';
+import type { Fetchable } from 'misc/fetchable';
 
 import * as React from 'react';
 import * as f from 'misc/fetchable';
